@@ -29,6 +29,15 @@ for file in audio_files:
     if split[0] in emission_context.keys():
         emission_context.get(split[0]).append(file)
 
+wait_food_ex = DATA_DIR + emission_context.get('F')[2]
+data_food , sample_rate_F = librosa.load(wait_food_ex)
+
+isolated_ex = DATA_DIR+ emission_context.get('I')[0]
+data_isolated , sample_rate_I  = librosa.load(isolated_ex)
+
+brushing_ex = DATA_DIR + emission_context.get('B')[1]
+data_brushing , sample_rate_B  = librosa.load(brushing_ex)
+
 # rename keys of dictionary
 emission_context['Waiting For Food'] = emission_context.pop('F')
 emission_context['Isolated in unfamiliar Environment'] = emission_context.pop('I')
