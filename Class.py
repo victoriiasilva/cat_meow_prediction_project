@@ -13,15 +13,15 @@ class Cat_Class:
     def __init__(self, model_path):
         self.model = keras.models.load_model(model_path)
 
-    def open_file_dialog(self):
-        root = tk.Tk()
-        root.withdraw()
-        file_path = filedialog.askopenfilename(filetypes=[("Audio files", "*.wav")])
-        root.destroy()
-        return file_path
+    #def open_file_dialog(self):
+        #root = tk.Tk()
+        #root.withdraw()
+        #file_path = filedialog.askopenfilename(filetypes=[("Audio files", "*.wav")])
+        #root.destroy()
+        #return file_path
 
-    def save_audio(self):
-        file_path = self.open_file_dialog()
+    def save_audio(self,file_path):
+        #file_path = self.open_file_dialog()
         if file_path:
             with tempfile.TemporaryDirectory() as temp_dir:
                 temp_file = os.path.join(temp_dir, os.path.basename(file_path))
@@ -56,17 +56,10 @@ class Cat_Class:
         return result
 
 #Pedirme acceso al bucket
-storage_client = storage.Client()
 
-bucket_name = "cat-project-bucket-franloplam"
-blob_name = "trained_model.h5"
 
-local_path = "/home/fll_data_bata/code/Franloplam/DB Gatos/trained_model.h5" #Cambiar cada uno donde va a guardar el modelo
+local_path = "/Users/martinaaguilar/code/victoriiasilva/cat_meow_prediction_project/modelo/trained_model.h5" #Cambiar cada uno donde va a guardar el modelo
 
-bucket = storage_client.get_bucket(bucket_name)
-blob = bucket.blob(blob_name)
-blob.download_to_filename(local_path)
-
-cat_init = Cat_Class(local_path)
-resultado = cat_init.save_audio()
-print(resultado)
+#cat_init = Cat_Class(local_path)
+#resultado = cat_init.save_audio()
+#print(resultado)
